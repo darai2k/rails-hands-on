@@ -1,1 +1,10 @@
 %h1 Posts
+
+= notice if notice.present?
+
+- @posts.each do |post|
+  .post{style: 'border: solid 1px'}
+    .title
+      = post.title
+    .body
+      = post.body

@@ -11,13 +11,14 @@ class PostsController < ApplicationController
   # GET /posts/:id
   #
   def show
+    @post = Post.find(params[:id])
   end
 
   #
   # GET /posts/new
   #
   def new
-    @post = Post.new 
+    @post = Post.new
   end
 
   #
@@ -29,13 +30,14 @@ class PostsController < ApplicationController
       redirect_to posts_path, :notice => "Create Post!"
     else
       render 'new'
-    end 
+    end
   end
 
   #
   # GET /posts/:id/edit
   #
   def edit
+    @post = Post.find(params[:id])
   end
 
 
@@ -43,6 +45,14 @@ class PostsController < ApplicationController
   # PUT /posts/:id
   #
   def update
+    @post = Post.find(params[:id])
+    @post.assign_attributes(params[:post])
+
+    if @post.save
+      redirect_to posts_path, :notice => "Update Post!"
+    else
+      render 'edit'
+    end
   end
 
   #

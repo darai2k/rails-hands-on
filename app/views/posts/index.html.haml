@@ -1,1 +1,11 @@
 %h1 Posts
+= link_to 'New', new_post_path
+
+= notice if notice.present?
+
+- @posts.each do |post|
+  .post{style: 'border: solid 1px'}
+    .title
+      = post.title
+    .body
+      = post.body

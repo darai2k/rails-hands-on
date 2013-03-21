@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   #
   def index
+    @posts = Post.all
   end
 
   #
@@ -16,12 +17,19 @@ class PostsController < ApplicationController
   # GET /posts/new
   #
   def new
+    @post = Post.new 
   end
 
   #
   # POST /posts
   #
   def create
+    @post = Post.new(params[:post])
+    if @post.save
+      redirect_to posts_path, :notice => "Create Post!"
+    else
+      render 'new'
+    end 
   end
 
   #
